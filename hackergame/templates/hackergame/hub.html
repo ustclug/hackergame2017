@@ -1,0 +1,11 @@
+{% extends "hackergame/base.html" %}
+
+{% block body %}
+    <h1>Hub</h1>
+    {% if logged %}
+        <p>{{ user }}</p>
+        <a href="{% url "logout" %}">sign out</a>
+    {% else %}
+        <a href="{{ login }}">sign up / sign in</a>
+    {% endif %}
+{% endblock %}
