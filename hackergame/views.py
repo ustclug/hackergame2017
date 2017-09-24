@@ -8,15 +8,23 @@ __all__ = 'hub', 'login', 'logout'
 
 SERVICE = 'http://home.ustc.edu.cn/~wzb15/cas.html'
 CAS_L = 'https://passport.ustc.edu.cn/login?service=%s' % SERVICE
-CAS_V = 'https://passport.ustc.edu.cn/serviceValidate?service=%s&ticket={0}' % SERVICE
+CAS_V = 'https://passport.ustc.edu.cn/serviceValidate?service=%s&ticket={0}' \
+        % SERVICE
 
 
 def hub(request):
     logged = request.user.is_authenticated
+    with open('SECRET_problems.py') as f:
+        problems = eval(f.read())
+    for problem in problems:
+        problem['solved'] = False
+        problem['user_solved'] = 70
+        problem['user_tried'] = 100
     return render(request, 'hackergame/hub.html',
                   {'logged': logged,
                    'user': request.user.username if logged else '',
-                   'login': CAS_L})
+                   'login': CAS_L,
+                   'problems': problems})
 
 
 def login(request):
