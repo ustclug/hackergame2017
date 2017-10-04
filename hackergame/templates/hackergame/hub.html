@@ -1,43 +1,27 @@
+{# args: #}
+{# problems[{pid, title, user_solved, score}] #}
+{# solved[] #}
 {% extends "hackergame/base.html" %}
 
 {% block body %}
-<div class="content-wrapper">
-    <header class="navbar navbar-inverse navbar-extra">
-        <div class="container">
-            <a class="navbar-brand" href="/">HackerGame 2017 Hub</a>
-            {% if logged %}
-                <a class="btn btn-primary sign-in" href="{% url "logout" %}">注销 {{ user }}</a>
-            {% else %}
-                <a class="btn btn-primary sign-in" href="{{ login }}">登录</a>
-            {% endif %}
-        </div>
-    </header>
-    <div class="container">
-        <div class="row">
-            {% for problem in problems %}
-                <article class="col-sm-4">
-                    <div class="panel panel-{% if problem.solved %}success{% else %}primary{% endif %}">
-                        <div class="panel-heading">
-                            <h2 class="panel-title">
-                                <a href="/problem/{{ problem.id }}">{{ problem.title }} <i class="fa fa-external-link" aira-hidden="true"></i></a>
-                            </h2>
-                        </div>
-                        <div class="panel-body">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="flag{...}" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-flag-checkered" aira-hidden="true"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            {{ problem.score }}<i class="fa fa-star" aria-hidden="true"></i>
-                            {{ problem.user_solved }}/{{ problem.user_tried }}<i class="fa fa-user" aira-hidden="true"></i>
-                        </div>
-                    </div>
-                </article>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+    <p>There're some words about this contest here.</p>
+    <p>There're some words about this contest here.</p>
+    <p>There're some words about this contest here.</p>
+    <p>There're some words about this contest here.</p>
+    <p>And the rule of ranking.</p>
+    <ul id="problems">
+        <li class="heading">题目<span>人数</span><span>分数</span></li>
+        {% for problem in problems %}
+            <li class="problem-{% if problem not in solved %}un{% endif %}solved">
+                <a class="problem-title" href="{% url "problem" pid=problem.pid %}">{{ problem.title }}</a>
+                <span class="problem-user-solved">{{ problem.user_solved }}</span>
+                <span class="problem-score">{{ problem.score }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>There're some words about this contest here.</p>
+    <p>There're some words about this contest here.</p>
+    <p>There're some words about this contest here.</p>
+    <p>There're some words about this contest here.</p>
+    <p>There're some words about this contest here.</p>
 {% endblock %}

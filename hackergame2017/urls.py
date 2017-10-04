@@ -20,7 +20,10 @@ from hackergame import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.hub),
+    url(r'^$', views.hub, name='hub'),
     url(r'^login$', views.login),
+    url(r'^sudo/(?P<username>.+)', views.sudo),
     url(r'^logout$', views.logout, name='logout'),
+    url(r'^problem/(?P<pid>[a-zA-Z0-9_]+)', views.problem, name='problem'),
+    url(r'^submit/(?P<pid>[a-zA-Z0-9_]+)', views.submit, name='submit'),
 ]

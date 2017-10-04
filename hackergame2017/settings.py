@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+service = 'http://hack.lug.ustc.edu.cn/'
+cas = 'https://passport.ustc.edu.cn/'
+SITE = {
+    'basetitle': 'Hackergame 2017',
+    'login': cas + 'login?service=%s' % service,
+    'validate': cas + 'serviceValidate?service=%s&ticket=%%s' % service,
+}
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -104,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
