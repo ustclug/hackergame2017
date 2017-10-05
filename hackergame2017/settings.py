@@ -12,12 +12,13 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
-hostname = 'http://hack.lug.ustc.edu.cn/'
+hostname = 'hack.lug.ustc.edu.cn'
+service = 'http://%s/login' % hostname
 cas = 'https://passport.ustc.edu.cn/'
 SITE = {
     'basetitle': 'Hackergame 2017',
-    'login': cas + 'login?service=%s' % hostname,
-    'validate': cas + 'serviceValidate?service=%s&ticket=%%s' % hostname,
+    'login': cas + 'login?service=%s' % service,
+    'validate': cas + 'serviceValidate?service=%s&ticket=%%s' % service,
     'endtime': 1508558400,  # 2017-10-21T12:00:00+08:00
 }
 
