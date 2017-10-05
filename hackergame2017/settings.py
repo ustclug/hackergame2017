@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
-service = 'http://hack.lug.ustc.edu.cn/'
+hostname = 'http://hack.lug.ustc.edu.cn/'
 cas = 'https://passport.ustc.edu.cn/'
 SITE = {
     'basetitle': 'Hackergame 2017',
-    'login': cas + 'login?service=%s' % service,
-    'validate': cas + 'serviceValidate?service=%s&ticket=%%s' % service,
+    'login': cas + 'login?service=%s' % hostname,
+    'validate': cas + 'serviceValidate?service=%s&ticket=%%s' % hostname,
     'endtime': 1508558400,  # 2017-10-21T12:00:00+08:00
 }
 
@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'test-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'true').lower() == 'true'
 
-ALLOWED_HOSTS = [os.environ.get('HOSTNAME', 'localhost')]
+ALLOWED_HOSTS = [os.environ.get('HOSTNAME', 'localhost'), hostname]
 
 
 # Application definition
@@ -128,5 +128,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
