@@ -18,6 +18,7 @@ SITE = {
     'basetitle': 'Hackergame 2017',
     'login': cas + 'login?service=%s' % service,
     'validate': cas + 'serviceValidate?service=%s&ticket=%%s' % service,
+    'endtime': 1508558400,  # 2017-10-21T12:00:00+08:00
 }
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

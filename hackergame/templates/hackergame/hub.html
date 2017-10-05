@@ -10,7 +10,7 @@
     <p>There're some words about this contest here.</p>
     <p>And the rule of ranking.</p>
     <ul id="problems">
-        <li class="heading">题目<span>人数</span><span>分数</span></li>
+        <li class="heading">题目<span>完成人数</span><span>分数</span></li>
         {% for problem in problems %}
             <li class="problem-{% if problem not in solved %}un{% endif %}solved">
                 <a class="problem-title" href="{% url "problem" pid=problem.pid %}">{{ problem.title }}</a>

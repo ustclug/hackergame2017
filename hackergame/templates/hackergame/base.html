@@ -1,7 +1,6 @@
 {# args: #}
 {# site{basetitle, login} #}
 {# title #}
-{# msg{type, content} #}
 {% load static %}
 
 <!DOCTYPE html>
@@ -20,14 +19,19 @@
         <header>
             <a id="title" href="{% url "hub" %}">{{ site.basetitle }}</a>
             {% if request.user.is_authenticated %}
-                <a id="logout" href="{% url "logout" %}">注销 {{ request.user.username }}</a>
+                <form action="{% url "logout" %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" id="logout" name="submit" value="注销 {{ request.user.username }}" />
+                </form>
             {% else %}
                 <a id="login" href="{{ site.login }}">登录</a>
             {% endif %}
         </header>
     </div>
-    {% if msg.type %}
-        <div class="msg-{{ msg.type }}">{{ msg.content }}</div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="msg-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
     {% endif %}
     <div id="container">
         {% block body %}{% endblock %}
