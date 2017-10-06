@@ -5,6 +5,9 @@ body {
 :focus {
     outline: 0;
 }
+a {
+    color: #08c;
+}
 
 #header {
     height: 60px;
