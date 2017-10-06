@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir django
 COPY . .
 ENV DEBUG=false
 
-CMD python3 start.py
+CMD python3 manage.py runserver 0:80

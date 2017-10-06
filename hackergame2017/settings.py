@@ -23,6 +23,15 @@ SITE = {
     'endtime': 1508558400,  # 2017-10-21T12:00:00+08:00
 }
 
+if not os.path.exists('.inited'):
+    open('.inited', 'w').close()
+    from django.contrib.auth.models import User
+    os.system('python3 manage.py collectstatic')
+    os.system('python3 manage.py migrate')
+    User.objects.create_superuser(os.environ.get('ROOT_USERNAME', 'root'),
+                                  os.environ.get('ROOT_EMAIL', None),
+                                  os.environ.get('ROOT_PASSWORD', None))
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
