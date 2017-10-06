@@ -4,11 +4,12 @@
 {% extends "hackergame/base.html" %}
 
 {% block body %}
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>And the rule of ranking.</p>
+    <h1>{{ site.basetitle }}</h1>
+    <div class="msg-info">比赛将于北京时间2017年10月14日中午12时开始，为期一周。<a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Hackergame%202017&details=Hackergame%202017&dates=20171014T040000Z/20171021T040000Z&location=http://hack.lug.ustc.edu.cn/&trp=false">添加到 Google Calendar</a></div>
+    <p>奖项：一等奖一名，二等奖三名，三等奖五名，另设新生特别奖（限大一）两名。</p>
+    <p>赛制：各道题独立，可以按任意顺序尝试，解出形如<code>flag{...}</code>的正确答案并提交即得该题分数。最终以总分排名，总分相同者以总耗时排名。</p>
+    <p>注意：科大学生请登录后答题。未登录者也可以答题，但无法参与评奖。任何检测到的作弊行为将立刻导致登录所用学号被封禁，失去参赛资格，请不要在比赛结束前发布题目或答案到其他平台。</p>
+    <p>祝大家参赛愉快～</p>
     <ul id="problems">
         <li class="heading">题目<span>完成人数</span><span>分数</span></li>
         {% for problem in problems %}
@@ -19,9 +20,5 @@
             </li>
         {% endfor %}
     </ul>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
+    <p><a href="http://lug.ustc.edu.cn/">中国科学技术大学学生Linux用户协会（USTC LUG）</a> <a href="mailto:lug@ustc.edu.cn">联系我们</a></p>
 {% endblock %}
