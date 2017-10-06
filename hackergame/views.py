@@ -119,6 +119,7 @@ def rank(request):
 
 @require_safe
 def init(request):
+    import os
     if not os.path.exists('.inited'):
         open('.inited', 'w').close()
         from django.contrib.auth.models import User
