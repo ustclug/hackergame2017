@@ -4,11 +4,11 @@
 {% extends "hackergame/base.html" %}
 
 {% block body %}
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>And the rule of ranking.</p>
+    <h3>欢迎大家参加第四届Hackergame!</h3>
+    <p>本次比赛中，中国科大的同学请使用校内统一身份认证账号登录，外校同学请注册临时账号</p>
+    <p>比赛时间: <strong>10月14日12:00 - 10月21日12:00</strong></p>
+    <a href="#rules">阅读比赛规则</a>
+    <h4>当前排行</h4>
     <ul id="problems">
         <li class="heading">题目<span>完成人数</span><span>分数</span></li>
         {% for problem in problems %}
@@ -19,9 +19,11 @@
             </li>
         {% endfor %}
     </ul>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
-    <p>There're some words about this contest here.</p>
+    <h4 id="rules">比赛规则</h4>
+    <ul>
+        <li>1. 本比赛主要目的为普及信息安全知识，不建议有大量ctf比赛经验的同学参加。</li>
+        <li>2. 比赛赛制为夺旗赛制，解开每道题需要的得到如<em>flag{XXXXX}</em>的字符串，并提交。</li>
+        <li>3. 每道题有一定的分值，最终排名将依次根据<strong>总得分</strong>，<strong>已完成的最后一题的完成时间</strong>进行排名。请参赛同学根据自己的情况自由答题。</li>
+        <li>4. 本次比赛共设一等奖一名，二等奖三名，三等奖五名，新生特别奖两名。其中，一、二、三等奖根据总排名选出，新生特别奖根据大一同学排名选出。</li>
+    </ul>
 {% endblock %}
