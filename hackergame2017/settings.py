@@ -18,6 +18,7 @@ cas = 'https://passport.ustc.edu.cn/'
 SITE = {
     'basetitle': 'Hackergame 2017',
     'login': cas + 'login?service=%s' % service,
+    'logout': cas + 'logout',
     'validate': cas + 'serviceValidate?service=%s&ticket=%%s' % service,
     'endtime': 1508558400,  # 2017-10-21T12:00:00+08:00
 }

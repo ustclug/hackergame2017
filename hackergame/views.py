@@ -55,7 +55,9 @@ def su(request, username):
 @require_POST
 def logout(request):
     auth_logout(request)
-    messages.info(request, '您已注销，请注意未登录时提交将不会被记录')
+    messages.info(request, '您已注销，请注意未登录时提交将不会被记录' +
+                  '<img src="%s" style="display:none" />'
+                  % settings.SITE['logout'])
     return redirect(hub)
 
 

@@ -30,7 +30,7 @@
     </div>
     {% if messages %}
         {% for message in messages %}
-            <div class="msg-{{ message.tags }}">{{ message }}</div>
+            <div class="msg-{{ message.tags }}">{{ message | safe }}</div>
         {% endfor %}
     {% endif %}
     <div id="container">
