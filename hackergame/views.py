@@ -104,6 +104,24 @@ def submit(request, pid):
 
 
 @require_safe
+def urank(request):
+    totalscore = sum(p.score for p in Problem.objects.all())
+    data = {u: {'name': u.username, 'score': 0, 'time': 0}
+            for u in User.objects.all() if u.username.startwith('U_')}
+    for s in Solved.objects.all():
+        data[s.user]['score'] += s.problem.score
+        data[s.user]['time'] = max(data[s.user]['time'], s.time.timestamp())
+    data = list(sorted(data.values(), reverse=True,
+                       key=lambda u: (u['score'], -u['time'])))
+    for u in data:
+        u['percentage'] = u['score'] * 100 // totalscore
+    return render(request, 'hackergame/urank.html',
+                  {'site': settings.SITE,
+                   'title': '当前排名',
+                   'rank': data})
+
+
+@require_safe
 @staff_member_required
 def rank(request):
     totalscore = sum(p.score for p in Problem.objects.all())
