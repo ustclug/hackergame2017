@@ -20,6 +20,7 @@ SITE = {
     'login': cas + 'login?service=%s' % service,
     'logout': cas + 'logout',
     'validate': cas + 'serviceValidate?service=%s&ticket=%%s' % service,
+    'starttime': 1507953600,  # 2017-10-14T12:00:00+08:00
     'endtime': 1508558400,  # 2017-10-21T12:00:00+08:00
 }
 

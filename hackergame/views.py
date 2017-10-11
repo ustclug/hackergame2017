@@ -21,9 +21,14 @@ def hub(request):
         solved = set(s.problem for s in request.user.solved_set.all())
     except AttributeError:
         solved = set()
+    if request.user.is_authenticated and request.user.is_staff:
+        before = False
+    else:
+        before = time() < settings.SITE['starttime']
     return render(request, 'hackergame/hub.html',
                   {'site': settings.SITE,
                    'title': 'Hub',
+                   'before': before,
                    'problems': problems,
                    'solved': solved})
 
