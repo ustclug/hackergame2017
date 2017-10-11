@@ -138,7 +138,7 @@ def init(request):
 
 
 def reg(request):
-    if request.POST['username']:
+    if request.method == 'POST':
         user, created = User.objects.get_or_create(
             username='U_' + request.POST['username'])
         auth_login(request, user)
