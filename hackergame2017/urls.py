@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^submit/(?P<pid>[a-zA-Z0-9_]+)', views.submit, name='submit'),
     url(r'^rank$', views.rank),
     url(r'^init$', views.init),
+    url(r'^reg$', views.reg, name='reg'),
 ]

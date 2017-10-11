@@ -135,3 +135,15 @@ def init(request):
                                       os.environ.get('ROOT_PASSWORD', None))
         messages.success(request, 'Successfully inited')
     return redirect(hub)
+
+
+def reg(request):
+    if request.POST['username']:
+        user, created = User.objects.get_or_create(
+            username='U_' + request.POST['username'])
+        auth_login(request, user)
+        messages.info(request, '您已登录')
+        return redirect(hub)
+    return render(request, 'hackergame/reg.html',
+                  {'site': settings.SITE,
+                   'title': '校外登录入口'})

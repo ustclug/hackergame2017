@@ -1,0 +1,10 @@
+{% extends "hackergame/base.html" %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <form action="{% url "reg" %}" method="post">
+        {% csrf_token %}
+        <input type="text" id="flag" name="username" placeholder="username" />
+        <input type="submit" id="submit" name="submit" value="登录" />
+    </form>
+{% endblock %}
