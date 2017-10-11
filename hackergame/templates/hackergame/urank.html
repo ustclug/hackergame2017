@@ -1,0 +1,12 @@
+{# args: #}
+{# rank[{name, percentage, score}] #}
+{% extends "hackergame/base.html" %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <ol id="users">
+        {% for user in rank %}
+            <li>{{ user.name }}<span class="barbox"><span class="bar" style="width: {{ user.percentage }}%">{{ user.score }}</span></span></li>
+        {% endfor %}
+    </ol>
+{% endblock %}
