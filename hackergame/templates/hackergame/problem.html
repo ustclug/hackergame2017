@@ -7,7 +7,7 @@
     <div>{{ problem.text | safe }}</div>
     <form action="{% url "submit" pid=problem.pid %}" method="post">
         {% csrf_token %}
-        <a id="link" href="{{ problem.url }}">打开题目</a>
+        <a id="link" target="_blank" href="{{ problem.url }}">打开题目</a>
         <input type="text" autocomplete="off" id="flag" name="flag" placeholder="flag{...}" />
         <input type="submit" id="submit" name="submit" value="提交" />
     </form>
