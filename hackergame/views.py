@@ -14,6 +14,13 @@ from .models import Problem, Solved
 __all__ = 'hub', 'login', 'logout'
 
 
+def running(request):
+    if request.user.is_authenticated and request.user.is_staff:
+        return True
+    else:
+        return settings.SITE['starttime'] <= time() <= settings.SITE['endtime']
+
+
 @require_safe
 def hub(request):
     problems = Problem.objects.order_by('score', 'pid')
@@ -68,6 +75,9 @@ def logout(request):
 
 @require_safe
 def problem(request, pid):
+    if not running(request):
+        messages.error(request, '比赛未在进行')
+        return redirect(hub)
     try:
         p = Problem.objects.get(pid=pid)
     except Problem.DoesNotExist:
@@ -81,6 +91,9 @@ def problem(request, pid):
 
 @require_POST
 def submit(request, pid):
+    if not running(request):
+        messages.error(request, '比赛未在进行')
+        return redirect(hub)
     if time() >= settings.SITE['endtime']:
         messages.info(request, '比赛已结束')
         return redirect(hub)
