@@ -2,6 +2,7 @@
 
 {% block body %}
     <h1>{{ title }}</h1>
+    <div class="msg-info">上交、浙大、南大参赛同学请输入自己的学号登录</div>
     <form action="{% url "reg" %}" method="post">
         {% csrf_token %}
         <input type="text" id="flag" name="username" placeholder="username" />
