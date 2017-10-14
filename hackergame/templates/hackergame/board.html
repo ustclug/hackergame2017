@@ -21,7 +21,7 @@
         {% for user in rank %}
             <tr>
                 <td>{{ user.rank }}</td>
-                <td>{{ user.name | truncatechars:20}}({{ user.get_full_name }})</td>
+                <td>{{ user.name | truncatechars:20}}({{ user.fullname }})</td>
                 <td>{{ user.score }}</td>
                 {% for t, first_blood in user.info %}
                 <td>

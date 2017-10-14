@@ -179,6 +179,7 @@ def board(request):
             else: info.append((s.time,0) if s else (None,0))
         data[user] = {
             'name': user.username,
+            'fullname': user.get_full_name(),
             'info': info,
             'score': 0,
             'time': 0
