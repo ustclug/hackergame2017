@@ -160,3 +160,48 @@ def reg(request):
     return render(request, 'hackergame/reg.html',
                   {'site': settings.SITE,
                    'title': '校外登录入口'})
+
+
+@staff_member_required
+def board(request):
+    totalscore = sum(p.score for p in Problem.objects.all())
+    problems = Problem.objects.order_by('score').all()
+    first_solved = []
+    for problem in problems:
+        fs = Solved.objects.order_by('time').filter(problem=problem).first()
+        if (fs): first_solved.append(fs)
+    data = dict()
+    for user in User.objects.all():
+        info = []
+        for problem in problems:
+            s = Solved.objects.order_by('time').filter(user=user, problem=problem).first()
+            if s in first_solved: info.append((s.time,1))
+            else: info.append((s.time,0) if s else (None,0))
+        data[user] = {
+            'name': user.username,
+            'info': info,
+            'score': 0,
+            'time': 0
+        }
+
+
+    for s in Solved.objects.all():
+        data[s.user]['score'] += s.problem.score
+        data[s.user]['time'] = max(data[s.user]['time'], s.time.timestamp())
+    data = list(sorted(data.values(), reverse=True, key=lambda u: (u['score'], -u['time'])))
+
+    _rank_cnt = 0
+    for u in data:
+        if u['name'].startswith('U_'):
+            rank_str = '*'
+        else:
+            _rank_cnt += 1
+            rank_str = str(_rank_cnt)
+        u['rank'] = rank_str
+
+    return render(request, 'hackergame/board.html',
+                  {'site': settings.SITE,
+                   'title': '当前排名',
+                   'rank': data,
+                   'problems': problems
+                   })

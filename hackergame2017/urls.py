@@ -29,4 +29,6 @@ urlpatterns = [
     url(r'^rank$', views.rank),
     url(r'^init$', views.init),
     url(r'^reg$', views.reg, name='reg'),
+    url(r'^board', views.board),
+
 ]

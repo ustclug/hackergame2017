@@ -1,0 +1,42 @@
+{# args: #}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Board</title>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>R</th>
+            <th>Name</th>
+            <th>Score</th>
+            {% for problem in problems %}
+                <th>{{ problem.title }}({{ problem.solved_set.count }})</th>
+            {% endfor %}
+        </tr>
+        {% for user in rank %}
+            <tr>
+                <td>{{ user.rank }}</td>
+                <td>{{ user.name | truncatechars:20}}({{ user.get_full_name }})</td>
+                <td>{{ user.score }}</td>
+                {% for t, first_blood in user.info %}
+                <td>
+                    {% if t %}
+                        {% if first_blood %}
+                            <span style="color: red;">{{ t | date:"d" }}-{{ t | time:"H:i" }}</span>
+                        {% else %}
+                            {{ t | date:"d" }}-{{ t | time:"H:i" }}
+                        {% endif %}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
