@@ -23,11 +23,16 @@ def running(request):
 
 @require_safe
 def hub(request):
+    user_score = 0
     problems = Problem.objects.order_by('score', 'pid')
     try:
         solved = set(s.problem for s in request.user.solved_set.all())
     except AttributeError:
         solved = set()
+
+    for s in solved:
+        user_score += s.score
+
     if request.user.is_authenticated and request.user.is_staff:
         before = False
     else:
@@ -37,7 +42,8 @@ def hub(request):
                    'title': 'Hub',
                    'before': before,
                    'problems': problems,
-                   'solved': solved})
+                   'solved': solved,
+                   'user_score': user_score})
 
 
 @require_safe
@@ -132,7 +138,8 @@ def rank(request):
     return render(request, 'hackergame/rank.html',
                   {'site': settings.SITE,
                    'title': '当前排名',
-                   'rank': data})
+                   'rank': data
+                   })
 
 
 @require_safe
