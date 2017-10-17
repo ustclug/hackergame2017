@@ -28,6 +28,10 @@ def hub(request):
         solved = set(s.problem for s in request.user.solved_set.all())
     except AttributeError:
         solved = set()
+
+    user_score = 0
+    for s in solved: user_score += s.score
+
     if request.user.is_authenticated and request.user.is_staff:
         before = False
     else:
@@ -37,7 +41,8 @@ def hub(request):
                    'title': 'Hub',
                    'before': before,
                    'problems': problems,
-                   'solved': solved})
+                   'solved': solved,
+                   'user_score': user_score})
 
 
 @require_safe
